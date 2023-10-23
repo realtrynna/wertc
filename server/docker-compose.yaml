@@ -1,0 +1,21 @@
+version: "3.7"
+services:
+  server:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "1000:3000"
+    env_file:
+      - "./.env"
+  postgresql:
+    image: postgres
+    restart: always
+    container_name: postgres
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: 1234
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./data:/var/lib/postgressql/data
