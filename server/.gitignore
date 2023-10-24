@@ -39,3 +39,4 @@ lerna-debug.log*
 
 data
 openssl
+env.yaml

@@ -1,9 +1,9 @@
-import fs from "fs";
+import { existsSync } from "fs";
 
 import { rsaPemKeySaveFolderPath } from "src/config/constant";
 
 export function isFolderChecker() {
-    const isFolder = fs.existsSync(rsaPemKeySaveFolderPath);
+    const isFolder = existsSync(rsaPemKeySaveFolderPath);
 
     return isFolder;
 }
