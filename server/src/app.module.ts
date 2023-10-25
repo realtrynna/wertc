@@ -1,7 +1,7 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AuthModule, DbModule } from "src/modules";
+import { AuthModule, DbModule, CustomConfigModule } from "src/modules";
 import yamlConfig from "src/config/env/yaml.config";
 
 @Module({
@@ -12,6 +12,7 @@ import yamlConfig from "src/config/env/yaml.config";
         }),
         AuthModule,
         DbModule,
+        CustomConfigModule
     ],
     controllers: [],
     providers: [],
