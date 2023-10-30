@@ -19,7 +19,10 @@
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "prepare": "ts-patch install"
+    "prepare": "ts-patch install",
+    "db:pull": "npx drizzle-kit introspect:pg --config=drizzle.config.ts",
+    "db:push": "npx drizzle-kit push:pg --config=drizzle.config.ts",
+    "db:check": "npx drizzle-kit check:pg --config=drizzle.config.ts"
   },
   "dependencies": {
     "@nestia/core": "^2.3.4",

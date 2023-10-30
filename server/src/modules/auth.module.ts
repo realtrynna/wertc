@@ -3,8 +3,9 @@ import { JwtModule, JwtModuleOptions } from "@nestjs/jwt";
 import { PassportModule } from "@nestjs/passport";
 
 import { CustomConfigModule } from "src/modules/custom-config.module";
-import { AuthController } from "src/controllers";
-import { AuthService, CustomConfigService } from "src/providers";
+import { AuthController } from "src/controllers/auth.controller";
+import { AuthService } from "src/providers/auth.service";
+import { CustomConfigService } from "src/providers/custom-config.service";
 
 @Module({
     imports: [

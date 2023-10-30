@@ -1,6 +1,6 @@
 import { Module } from "@nestjs/common";
 
-import { CustomConfigService } from "src/providers";
+import { CustomConfigService } from "src/providers/custom-config.service";
 
 @Module({
     providers: [CustomConfigService],

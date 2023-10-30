@@ -19,14 +19,15 @@ async function bootstrap() {
 
     const app = await NestFactory.create(AppModule);
 
-    app.setGlobalPrefix("api");
-    app.enableVersioning({
-        type: VersioningType.URI,
-        prefix: "v",
-        defaultVersion: "1",
-    });
+    app.setGlobalPrefix("api")
+        .enableVersioning({
+            type: VersioningType.URI,
+            prefix: "v",
+            defaultVersion: "1",
+        })
+        .listen(3000, "0.0.0.0");
 
-    await app.listen(3000);
+    // await app.listen(3000, "0.0.0.0");
 }
 
 bootstrap();

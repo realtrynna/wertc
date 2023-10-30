@@ -6,7 +6,7 @@ import { rsaPemKeySaveFolderPath } from "src/config/constant";
 
 /**
  * @todo
- * yaml에 작성된 환경 변수를 별도의 타입으로 만들기
+ * yaml에 작성된 환경 변수를 별도의 타입 작성
  */
 @Injectable()
 export class CustomConfigService {

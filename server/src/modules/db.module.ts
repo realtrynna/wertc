@@ -2,8 +2,8 @@ import { Module } from "@nestjs/common";
 import { Pool } from "pg";
 import { drizzle } from "drizzle-orm/node-postgres";
 
-import { CustomConfigModule } from "src/modules/custom-config.module"
-import { CustomConfigService } from "src/providers";
+import { CustomConfigModule } from "src/modules/custom-config.module";
+import { CustomConfigService } from "src/providers/custom-config.service";
 import { DB_TOKEN } from "src/config/constant";
 
 @Module({
