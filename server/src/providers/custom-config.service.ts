@@ -11,7 +11,7 @@ import { rsaPemKeySaveFolderPath } from "src/config/constant";
 @Injectable()
 export class CustomConfigService {
     constructor(private readonly configService: ConfigService) {}
-    g4etRSAKeyConfig() {
+    getRSAKeyConfig() {
         const privatePemKey = readFileSync(
             rsaPemKeySaveFolderPath + "private.pem",
             "utf8",
@@ -28,18 +28,10 @@ export class CustomConfigService {
     }
 
     getJwtConfig() {
-        const { issuer, algorithm, expiresIn } = this.configService.get("jwt");
-
-        return {
-            issuer,
-            algorithm,
-            expiresIn,
-        };
+        return this.configService.get("jwt");
     }
 
     getDatabaseConfig() {
-        const { postgres } = this.configService.get("database");
-
-        return postgres;
+        return this.configService.get("database");
     }
 }

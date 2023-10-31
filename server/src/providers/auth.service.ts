@@ -1,9 +1,18 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { JwtService } from "@nestjs/jwt";
+
+import { UserService } from "src/providers/user.service";
+import { DRIZZLE_PROVIDER } from "src/config/constant";
 
 @Injectable()
 export class AuthService {
-    constructor(private readonly jwtService: JwtService) {}
+    constructor(
+        private readonly jwtService: JwtService,
+        private readonly userService: UserService,
+        @Inject(DRIZZLE_PROVIDER) private readonly db,
+    ) {}
 
-    async validateUser() {}
+    async validateUser() {
+        console.log(this.db);
+    }
 }
