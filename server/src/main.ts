@@ -25,7 +25,7 @@ async function bootstrap() {
             prefix: "v",
             defaultVersion: "1",
         })
-        .listen(3000, "0.0.0.0");
+        .listen(6004);
 
     // await app.listen(3000, "0.0.0.0");
 }

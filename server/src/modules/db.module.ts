@@ -4,14 +4,12 @@ import { drizzle } from "drizzle-orm/node-postgres";
 
 import { CustomConfigModule } from "src/modules/custom-config.module";
 import { CustomConfigService } from "src/providers/custom-config.service";
-import { BaseRepository } from "src/models/repositories/base.repository";
 import { DB_PROVIDER } from "src/config/constant";
 import * as users from "src/models/schemas/users";
 
 @Module({
     imports: [CustomConfigModule],
     providers: [
-        BaseRepository,
         {
             provide: DB_PROVIDER,
             inject: [CustomConfigService],

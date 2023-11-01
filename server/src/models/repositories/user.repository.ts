@@ -1,7 +1,8 @@
-import { BaseRepository } from "src/models/repositories/base.repository";
+import { Injectable } from "@nestjs/common";
 
-export class UserRepository extends BaseRepository {
-    constructor(a) {
-        super(a);
+@Injectable()
+export class UserRepository {
+    constructor() {
+        console.log("user repository");
     }
 }
