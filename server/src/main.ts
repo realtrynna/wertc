@@ -2,7 +2,7 @@ import { NestFactory } from "@nestjs/core";
 import { VersioningType } from "@nestjs/common";
 
 import { AppModule } from "src/app.module";
-import { folderGenerator, isFolderChecker, rsaKeyGenerator } from "src/utils";
+import { folderGenerator, isFolderChecker } from "src/utils";
 
 async function bootstrap() {
     const isFolder = isFolderChecker();
@@ -12,9 +12,6 @@ async function bootstrap() {
      */
     if (!isFolder) {
         folderGenerator();
-        rsaKeyGenerator();
-
-        console.log("RSA Key has been created successfully.");
     }
 
     const app = await NestFactory.create(AppModule);
@@ -25,9 +22,7 @@ async function bootstrap() {
             prefix: "v",
             defaultVersion: "1",
         })
-        .listen(6004);
-
-    // await app.listen(3000, "0.0.0.0");
+        .listen(3001, "0.0.0.0");
 }
 
 bootstrap();

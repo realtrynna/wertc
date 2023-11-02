@@ -21,4 +21,6 @@ import yamlConfig from "src/config/env/yaml.config";
     controllers: [],
     providers: [],
 })
-export class AppModule {}
+export class AppModule {
+    constructor() {}
+}

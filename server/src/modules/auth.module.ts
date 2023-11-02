@@ -22,12 +22,11 @@ import { users } from "src/models/schemas/users";
             ): JwtModuleOptions => {
                 const jwtOptions = customConfigService.getJwtConfig();
 
-                const { privatePemKey, publicPemKey } =
-                    customConfigService.getRSAKeyConfig();
+                const result = customConfigService.getRSAKeyConfig();
 
                 return {
-                    privateKey: privatePemKey,
-                    publicKey: publicPemKey,
+                    privateKey: "privatePemKey.toString()",
+                    publicKey: "publicPemKey.toString()",
                     signOptions: jwtOptions,
                 };
             },
