@@ -22,7 +22,7 @@ async function bootstrap() {
             prefix: "v",
             defaultVersion: "1",
         })
-        .listen(3001, "0.0.0.0");
+        .listen(3000, "0.0.0.0");
 }
 
 bootstrap();

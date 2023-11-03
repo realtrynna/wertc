@@ -15,6 +15,8 @@ export class DrizzleModule {
             useFactory: async (customConfigService: CustomConfigService) => {
                 const dbConfig = customConfigService.getDatabaseConfig();
 
+                if (!dbConfig) return;
+
                 const pool = new Pool(dbConfig);
 
                 return await drizzle(pool, {

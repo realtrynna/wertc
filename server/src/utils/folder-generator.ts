@@ -1,7 +1,7 @@
 import { mkdirSync } from "fs";
 
-import { rsaPemKeySaveFolderPath } from "../config/constant";
+import { rsaPemKeyFolderSavePath } from "../config/constant";
 
 export function folderGenerator() {
-    mkdirSync(rsaPemKeySaveFolderPath);
+    mkdirSync(rsaPemKeyFolderSavePath);
 }

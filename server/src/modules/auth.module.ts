@@ -8,32 +8,42 @@ import { AuthController } from "src/controllers/auth.controller";
 import { AuthService } from "src/providers/auth.service";
 import { CustomConfigService } from "src/providers/custom-config.service";
 import { UserService } from "src/providers/user.service";
-import { UserRepository } from "src/models/repositories/user.repository";
+import * as usersTable from "src/models/schemas/users";
 import { users } from "src/models/schemas/users";
 
 @Module({
     imports: [
-        DrizzleModule.forDrizzleRepository(users),
+        DrizzleModule.forDrizzleRepository(usersTable),
         JwtModule.registerAsync({
             imports: [CustomConfigModule],
             inject: [CustomConfigService],
-            useFactory: (
+            useFactory: async (
                 customConfigService: CustomConfigService,
-            ): JwtModuleOptions => {
+            ): Promise<JwtModuleOptions> => {
                 const jwtOptions = customConfigService.getJwtConfig();
-
-                const result = customConfigService.getRSAKeyConfig();
+                const pemKeyList = await customConfigService.getRSAKeyConfig();
 
                 return {
-                    privateKey: "privatePemKey.toString()",
-                    publicKey: "publicPemKey.toString()",
-                    signOptions: jwtOptions,
+                    privateKey: pemKeyList?.privatePemKey,
+                    publicKey: pemKeyList?.publicPemKey,
+                    signOptions: {
+                        issuer: jwtOptions?.issuer,
+                        algorithm: jwtOptions?.algorithm,
+                        expiresIn: jwtOptions?.expiresIn,
+                    },
                 };
             },
         }),
         PassportModule.register({ session: false }),
     ],
     controllers: [AuthController],
-    providers: [AuthService, UserService, UserRepository],
+    providers: [
+        AuthService,
+        UserService,
+        {
+            provide: "USERS",
+            useValue: users,
+        },
+    ],
 })
 export class AuthModule {}
