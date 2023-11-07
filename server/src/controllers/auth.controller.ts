@@ -16,6 +16,7 @@ export class AuthController {
     async createUser(@TypedBody() createUserDto: CreateUserDto) {
         // const result = await this.userService.createUser(createUserDto);
         const result = await this.authService.validateUser();
+
         return "hello";
     }
 }
