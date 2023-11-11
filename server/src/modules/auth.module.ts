@@ -8,12 +8,12 @@ import { AuthController } from "src/controllers/auth.controller";
 import { AuthService } from "src/providers/auth.service";
 import { CustomConfigService } from "src/providers/custom-config.service";
 import { UserService } from "src/providers/user.service";
-import * as usersTable from "src/models/schemas/users";
+import * as usersSchema from "src/models/schemas/users";
 import { users } from "src/models/schemas/users";
 
 @Module({
     imports: [
-        DrizzleModule.forDrizzleRepository(usersTable),
+        DrizzleModule.forDrizzleRepository(usersSchema),
         JwtModule.registerAsync({
             imports: [CustomConfigModule],
             inject: [CustomConfigService],

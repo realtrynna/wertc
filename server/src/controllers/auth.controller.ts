@@ -4,6 +4,9 @@ import { TypedBody, TypedRoute } from "@nestia/core";
 import { AuthService } from "src/providers/auth.service";
 import { UserService } from "src/providers/user.service";
 import { CreateUserDto } from "src/models/dtos/create-user-dto";
+import { LoginDto } from "src/models/dtos/login-dto";
+import { UserType } from "src/types";
+import { ALREADY_EXISTS_EMAIL } from "src/types/errors";
 
 @Controller("auth")
 export class AuthController {
@@ -13,10 +16,19 @@ export class AuthController {
     ) {}
 
     @TypedRoute.Post("create")
-    async createUser(@TypedBody() createUserDto: CreateUserDto) {
-        // const result = await this.userService.createUser(createUserDto);
-        const result = await this.authService.validateUser();
+    async createUser(@TypedBody() createUserDto: CreateUserDto): Promise<UserType.UserMeta | ALREADY_EXISTS_EMAIL> {
+        const result = await this.userService.createUser(createUserDto);
 
-        return "hello";
+        /**
+         * @todo
+         * Service 에서 error 를 리턴할 경우 예외 처리
+         */
+
+        return result;
+    }
+
+    @TypedRoute.Post("login")
+    async login(@TypedBody() loginDto: LoginDto) {
+        console.log("dto", loginDto);
     }
 }

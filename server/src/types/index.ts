@@ -29,5 +29,5 @@ export declare namespace EnvType {
 }
 
 export declare namespace UserType {
-    type UserMeta = InferSelectModel<typeof users>;
+    type UserMeta = Pick<InferSelectModel<typeof users>, "id" | "email" | "name" | "gender">;
 }

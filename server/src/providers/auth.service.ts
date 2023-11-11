@@ -14,19 +14,5 @@ export class AuthService {
         @Inject("USERS") private readonly users,
     ) {}
 
-    async validateUser() {
-        const result = await this.db
-            .select({
-                field1: this.users.email,
-                field2: this.users.gender,
-            })
-            .from(this.users)
-            .where(eq(this.users.email, "realtrynna"));
-
-        const token = this.jwtService.sign({
-            name: "1",
-        });
-
-        console.log(token);
-    }
+    async validateUser() {   }
 }

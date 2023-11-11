@@ -20,7 +20,7 @@ export class DrizzleModule {
                 const pool = new Pool(dbConfig);
 
                 return await drizzle(pool, {
-                    logger: true,
+                    logger: false,
                     schema: {
                         ...schema,
                     },

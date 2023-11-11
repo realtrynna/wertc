@@ -13,8 +13,9 @@ export const users = pgTable(
         email: varchar("email", { length: 255 }).notNull(),
         name: varchar("name", { length: 10 }).notNull(),
         gender: varchar("gender", { enum: ["남자", "여자"] }).notNull(),
+        password: varchar("password", { length: 255 }).notNull(),
         createdAt: timestamp("created_at").defaultNow().notNull(),
-        updatedAt: timestamp("created_at").defaultNow().notNull(),
+        updatedAt: timestamp("updated_at").defaultNow().notNull(),
     },
     (users) => {
         return {
@@ -22,3 +23,5 @@ export const users = pgTable(
         };
     },
 );
+
+export type TInsertUser = typeof users.$inferInsert;
