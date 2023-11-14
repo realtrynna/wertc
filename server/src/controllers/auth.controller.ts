@@ -16,19 +16,33 @@ export class AuthController {
     ) {}
 
     @TypedRoute.Post("create")
-    async createUser(@TypedBody() createUserDto: CreateUserDto): Promise<UserType.UserMeta | ALREADY_EXISTS_EMAIL> {
-        const result = await this.userService.createUser(createUserDto);
+    async createUser(
+        @TypedBody() createUserDto: CreateUserDto,
+    ): Promise<UserType.UserMeta | ALREADY_EXISTS_EMAIL | undefined> {
+        try {
+            const result = await this.userService.createUser(createUserDto);
 
-        /**
-         * @todo
-         * Service 에서 error 를 리턴할 경우 예외 처리
-         */
+            console.log(result);
 
-        return result;
+            /**
+             * @todo
+             * Service 에서 error 를 리턴할 경우 예외 처리
+             */
+
+            return result;
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     @TypedRoute.Post("login")
     async login(@TypedBody() loginDto: LoginDto) {
-        console.log("dto", loginDto);
+        try {
+            const result = await this.authService.login(loginDto);
+
+            return result;
+        } catch (err) {
+            console.error(err);
+        }
     }
 }
