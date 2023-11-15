@@ -9,6 +9,7 @@ import { UserType } from "src/types";
 import { ALREADY_EXISTS_EMAIL } from "src/types/errors";
 
 @Controller("auth")
+// @UseInterceptors(ResponseFormInterceptor)
 export class AuthController {
     constructor(
         private readonly authService: AuthService,
