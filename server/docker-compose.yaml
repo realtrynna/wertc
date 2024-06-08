@@ -7,7 +7,7 @@ services:
     ports:
       - "1000:3000"
     env_file:
-      - "./env.yaml"
+      - "app-env.yaml"
   postgresql:
     image: postgres
     restart: always

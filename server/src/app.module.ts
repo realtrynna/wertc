@@ -1,24 +1,21 @@
 import { Module } from "@nestjs/common";
 import { ConfigModule } from "@nestjs/config";
 
-import { AuthModule } from "src/modules/auth.module";
-import { CustomConfigModule } from "src/modules/custom-config.module";
-import { UserModule } from "src/modules/user.module";
-import yamlConfig from "src/config/env/yaml.config";
+import appConfiguration from "src/config/configurations/app-configuration";
+import { AppConfigModule } from "src/config/configurations/app-config.module";
+import { AuthModule } from "src/domains/auth/auth.module";
 
 @Module({
     imports: [
         ConfigModule.forRoot({
             isGlobal: true,
-            load: [yamlConfig],
+            cache: true,
+            load: [appConfiguration],
         }),
+        AppConfigModule,
         AuthModule,
-        CustomConfigModule,
-        UserModule,
     ],
     controllers: [],
     providers: [],
 })
-export class AppModule {
-    constructor() {}
-}
+export class AppModule {}
